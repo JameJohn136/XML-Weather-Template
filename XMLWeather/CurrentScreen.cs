@@ -19,7 +19,9 @@ namespace XMLWeather
 
         public void DisplayCurrent()
         {
-
+            cityOutput.Text = Form1.days[0].location;
+            currentDateLabel.Text = Form1.days[0].date;
+            currentOutput.Text = $"{Math.Round(Convert.ToDouble(Form1.days[0].currentTemp), 0).ToString()}°{Form1.days[0].tempUnit}";
         }
 
         private void forecastLabel_Click(object sender, EventArgs e)
@@ -29,6 +31,23 @@ namespace XMLWeather
 
             ForecastScreen fs = new ForecastScreen();
             f.Controls.Add(fs);
+        }
+
+        public void ChangeBackground()
+        {
+            int x = Convert.ToInt32(Form1.days[0].condition);
+            if (x == 800) // Clear
+            {
+                
+            } else if (801 <= x && x <= 804) // Clouds
+            {
+
+            }
+
+
+
+
+
         }
     }
 }
