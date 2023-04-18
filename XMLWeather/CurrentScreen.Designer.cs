@@ -39,6 +39,7 @@
             this.forecastLabel = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.currentDateLabel = new System.Windows.Forms.Label();
+            this.currentConditonLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cityOutput
@@ -161,11 +162,22 @@
             this.currentDateLabel.TabIndex = 43;
             this.currentDateLabel.Text = "Date";
             // 
+            // currentConditonLabel
+            // 
+            this.currentConditonLabel.AutoSize = true;
+            this.currentConditonLabel.ForeColor = System.Drawing.Color.White;
+            this.currentConditonLabel.Location = new System.Drawing.Point(31, 287);
+            this.currentConditonLabel.Name = "currentConditonLabel";
+            this.currentConditonLabel.Size = new System.Drawing.Size(66, 16);
+            this.currentConditonLabel.TabIndex = 44;
+            this.currentConditonLabel.Text = "Condition:";
+            // 
             // CurrentScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.currentConditonLabel);
             this.Controls.Add(this.currentDateLabel);
             this.Controls.Add(this.forecastLabel);
             this.Controls.Add(this.label3);
@@ -197,5 +209,6 @@
         private System.Windows.Forms.Label forecastLabel;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label currentDateLabel;
+        private System.Windows.Forms.Label currentConditonLabel;
     }
 }
