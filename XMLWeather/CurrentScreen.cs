@@ -27,6 +27,12 @@ namespace XMLWeather
             maxOutput.Text = $"{Math.Round(Convert.ToDouble(Form1.days[0].tempHigh), 0)}°{Form1.days[0].tempUnit}";
             minOutput.Text = $"{Math.Round(Convert.ToDouble(Form1.days[0].tempLow), 0)}°{Form1.days[0].tempUnit}";
             currentConditonLabel.Text = $"Conditon: {Form1.days[0].condtionName}";
+
+            lastUpdateTime.Text = $"Last Update: {Form1.days[0].lastUpdateTime}";
+
+            humidityText.Text = $"Humidity: {Form1.days[0].humidity}{Form1.days[0].humidityUnit}";
+
+            sunLabel.Text = $"Sun Rise: {Form1.days[0].sunRise}\nSun Set: {Form1.days[0].sunSet}";
         }
 
         private void forecastLabel_Click(object sender, EventArgs e)
