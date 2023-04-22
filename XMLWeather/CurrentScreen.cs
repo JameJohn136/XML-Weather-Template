@@ -23,9 +23,9 @@ namespace XMLWeather
             cityOutput.Text = Form1.days[0].location;
             currentDateLabel.Text = Form1.days[0].date;
 
-            currentOutput.Text = $"{Math.Round(Convert.ToDouble(Form1.days[0].currentTemp), 0)}°{Form1.days[0].tempUnit}";
-            maxOutput.Text = $"{Math.Round(Convert.ToDouble(Form1.days[0].tempHigh), 0)}°{Form1.days[0].tempUnit}";
-            minOutput.Text = $"{Math.Round(Convert.ToDouble(Form1.days[0].tempLow), 0)}°{Form1.days[0].tempUnit}";
+            tempLabel.Text = $"Current: {Math.Round(Convert.ToDouble(Form1.days[0].currentTemp), 0)}°{Form1.days[0].tempUnit}";
+            maxLabel.Text = $"Max: {Math.Round(Convert.ToDouble(Form1.days[0].tempHigh), 0)}°{Form1.days[0].tempUnit}";
+            minLabel.Text = $"Min: {Math.Round(Convert.ToDouble(Form1.days[0].tempLow), 0)}°{Form1.days[0].tempUnit}";
             currentConditonLabel.Text = $"Conditon: {Form1.days[0].condtionName}";
 
             lastUpdateTime.Text = $"Last Update: {Form1.days[0].lastUpdateTime}";
@@ -33,16 +33,20 @@ namespace XMLWeather
             humidityText.Text = $"Humidity: {Form1.days[0].humidity}{Form1.days[0].humidityUnit}";
 
             sunLabel.Text = $"Sun Rise: {Form1.days[0].sunRise}\nSun Set: {Form1.days[0].sunSet}";
+
+            // Display current weather icon
+            string url = $"https://openweathermap.org/img/wn/{Form1.days[0].iconID}@2x.png";
+            weatherIcon.LoadAsync(url);
         }
 
-        private void forecastLabel_Click(object sender, EventArgs e)
-        {
-            Form f = this.FindForm();
-            f.Controls.Remove(this);
+        //private void forecastLabel_Click(object sender, EventArgs e)
+        //{
+        //    Form f = this.FindForm();
+        //    f.Controls.Remove(this);
 
-            ForecastScreen fs = new ForecastScreen();
-            f.Controls.Add(fs);
-        }
+        //    ForecastScreen fs = new ForecastScreen();
+        //    f.Controls.Add(fs);
+        //}
 
         public void ChangeBackground()
         {

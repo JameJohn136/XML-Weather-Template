@@ -49,6 +49,7 @@ namespace XMLWeather
                 reader.ReadToFollowing("symbol");
                 d.condition = reader.GetAttribute("number");
                 d.condtionName = reader.GetAttribute("name");
+                d.iconID = reader.GetAttribute("var");
 
                 reader.ReadToFollowing("precipitation");
                 d.precipitationChance = reader.GetAttribute("probability");
