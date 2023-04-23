@@ -31,7 +31,7 @@ namespace XMLWeather
             tempLabel.Text = $"Current: {Math.Round(Convert.ToDouble(Form1.days[0].currentTemp), 0)}°{Form1.days[0].tempUnit}";
             currentMaxLabel.Text = $"Max: {Math.Round(Convert.ToDouble(Form1.days[0].tempHigh), 0)}°{Form1.days[0].tempUnit}";
             currentMinLabel.Text = $"Min: {Math.Round(Convert.ToDouble(Form1.days[0].tempLow), 0)}°{Form1.days[0].tempUnit}";
-            currentConditonLabel.Text = $"Conditon: {Form1.days[0].condtionName}";
+            currentConditonLabel.Text = $"Condition: {Form1.days[0].condtionName}";
 
             lastUpdateTime.Text = $"Last Update: {Form1.days[0].lastUpdateTime}";
 
