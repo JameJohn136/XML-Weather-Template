@@ -62,13 +62,13 @@ namespace XMLWeather
                     if (b.Name.Contains("minLabel"))
                     {
                         int x = Convert.ToInt32(b.Name.Last().ToString());
-                        b.Text = $"Min: {Form1.days[x].tempLow}{Form1.days[x].tempUnit}";
+                        b.Text = $"Min: {Math.Round(Convert.ToDouble(Form1.days[x].tempLow), 0)}°{Form1.days[0].tempUnit}";
                     }
 
                     if (b.Name.Contains("maxLabel"))
                     {
                         int x = Convert.ToInt32(b.Name.Last().ToString());
-                        b.Text = $"Max: {Form1.days[x].tempHigh}{Form1.days[x].tempUnit}";
+                        b.Text = $"Max: {Math.Round(Convert.ToDouble(Form1.days[x].tempHigh), 0)}°{Form1.days[0].tempUnit}";
                     }
 
                     if (b.Name.Contains("conditionLabel"))
