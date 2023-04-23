@@ -11,21 +11,26 @@ namespace XMLWeather
 {
     public partial class CurrentScreen : UserControl
     {
+
         public CurrentScreen()
         {
             InitializeComponent();
             DisplayCurrent();
+            DisplayForecast();
             ChangeBackground();
+
+            // Set initial city
+            cityInput.Text = Form1.location;
         }
 
         public void DisplayCurrent()
         {
             cityOutput.Text = Form1.days[0].location;
-            currentDateLabel.Text = Form1.days[0].date;
+            todayLabel.Text = $"Today: {Form1.days[0].date}";
 
             tempLabel.Text = $"Current: {Math.Round(Convert.ToDouble(Form1.days[0].currentTemp), 0)}°{Form1.days[0].tempUnit}";
-            maxLabel.Text = $"Max: {Math.Round(Convert.ToDouble(Form1.days[0].tempHigh), 0)}°{Form1.days[0].tempUnit}";
-            minLabel.Text = $"Min: {Math.Round(Convert.ToDouble(Form1.days[0].tempLow), 0)}°{Form1.days[0].tempUnit}";
+            currentMaxLabel.Text = $"Max: {Math.Round(Convert.ToDouble(Form1.days[0].tempHigh), 0)}°{Form1.days[0].tempUnit}";
+            currentMinLabel.Text = $"Min: {Math.Round(Convert.ToDouble(Form1.days[0].tempLow), 0)}°{Form1.days[0].tempUnit}";
             currentConditonLabel.Text = $"Conditon: {Form1.days[0].condtionName}";
 
             lastUpdateTime.Text = $"Last Update: {Form1.days[0].lastUpdateTime}";
@@ -39,14 +44,50 @@ namespace XMLWeather
             weatherIcon.LoadAsync(url);
         }
 
-        //private void forecastLabel_Click(object sender, EventArgs e)
-        //{
-        //    Form f = this.FindForm();
-        //    f.Controls.Remove(this);
+        public void DisplayForecast()
+        {
+            foreach (Control control in this.Controls)
+            {
+                Label b = control as Label;
+                if (b != null)
+                {
+                    if (b.Name.Contains("dateLabel"))
+                    {
+                        int x = Convert.ToInt32(b.Name.Last().ToString());
+                        b.Text = $"Date: {Form1.days[x].date}";
+                    }
 
-        //    ForecastScreen fs = new ForecastScreen();
-        //    f.Controls.Add(fs);
-        //}
+                    if (b.Name.Contains("minLabel"))
+                    {
+                        int x = Convert.ToInt32(b.Name.Last().ToString());
+                        b.Text = $"Min: {Form1.days[x].tempLow}{Form1.days[x].tempUnit}";
+                    }
+
+                    if (b.Name.Contains("maxLabel"))
+                    {
+                        int x = Convert.ToInt32(b.Name.Last().ToString());
+                        b.Text = $"Max: {Form1.days[x].tempHigh}{Form1.days[x].tempUnit}";
+                    }
+
+                    if (b.Name.Contains("conditionLabel"))
+                    {
+                        int x = Convert.ToInt32(b.Name.Last().ToString());
+                        b.Text = $"Condition: {Form1.days[x].condtionName}";
+                    }
+
+                }
+
+                PictureBox p = control as PictureBox;
+                if (p != null)
+                {
+                    if (p.Name.Contains("pictureBox"))
+                    {
+                        int x = Convert.ToInt32(p.Name.Last().ToString());
+                        p.LoadAsync($"https://openweathermap.org/img/wn/{Form1.days[x].iconID}@2x.png");
+                    }
+                }
+            }
+        }
 
         public void ChangeBackground()
         {
@@ -61,7 +102,7 @@ namespace XMLWeather
             }
             else if (x >= 500 && x <= 531) // Rain
             {
-                this.BackColor = Color.DarkSlateBlue;
+                this.BackColor = Color.CadetBlue;
             }
             else if (x >= 600 && x <= 622) // Snow
             {
@@ -79,11 +120,23 @@ namespace XMLWeather
             {
                 this.BackColor = Color.LightSlateGray;
             }
-
-
-
-
-
         }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            Form1.location = cityInput.Text;
+            if (Form1.ExtractForecast())
+            {
+                Form1.ExtractCurrent();
+                DisplayCurrent();
+                DisplayForecast();
+                ChangeBackground();
+            }
+            else
+            {
+                cityInput.Text = "Invalid Input";
+            }
+        }
+
     }
 }

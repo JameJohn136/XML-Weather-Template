@@ -14,7 +14,9 @@ namespace XMLWeather
     public partial class Form1 : Form
     {
        public static List<Day> days = new List<Day>();
-
+        public static string location = "Stratford,CA";
+        public static XmlReader reader;
+        private CurrentScreen cs;
 
         public Form1()
         {
@@ -24,61 +26,73 @@ namespace XMLWeather
             ExtractCurrent();
             
             // open weather screen for todays weather
-            CurrentScreen cs = new CurrentScreen();
+            cs = new CurrentScreen();
             this.Controls.Add(cs);
         }
 
-        private void ExtractForecast()
+        public static bool ExtractForecast()
         {
-            // TODO: Update URL to be for the city that is searched for
-            XmlReader reader = XmlReader.Create("http://api.openweathermap.org/data/2.5/forecast/daily?q=Stratford,CA&mode=xml&units=metric&cnt=7&appid=3f2e224b815c0ed45524322e145149f0");
+            // Clear Day List
+            days.Clear();
 
-            while (reader.Read())
+            try
             {
-                //create a day object
-                Day d = new Day();
+                // TODO: Update URL to be for the city that is searched for
+                reader = XmlReader.Create($"http://api.openweathermap.org/data/2.5/forecast/daily?q={location}&mode=xml&units=metric&cnt=7&appid=3f2e224b815c0ed45524322e145149f0");
 
-                //fill day object with required data
-                reader.ReadToFollowing("time");
-                d.date = reader.GetAttribute("day");
+                while (reader.Read())
+                {
+                    //create a day object
+                    Day d = new Day();
 
-                reader.ReadToFollowing("sun");
-                d.sunRise = reader.GetAttribute("rise");
-                d.sunSet = reader.GetAttribute("set");
+                    //fill day object with required data
+                    reader.ReadToFollowing("time");
+                    d.date = reader.GetAttribute("day");
 
-                reader.ReadToFollowing("symbol");
-                d.condition = reader.GetAttribute("number");
-                d.condtionName = reader.GetAttribute("name");
-                d.iconID = reader.GetAttribute("var");
+                    reader.ReadToFollowing("sun");
+                    d.sunRise = reader.GetAttribute("rise");
+                    d.sunSet = reader.GetAttribute("set");
 
-                reader.ReadToFollowing("precipitation");
-                d.precipitationChance = reader.GetAttribute("probability");
-                d.precipitationName = reader.GetAttribute("name");
-                d.PrecipitationType = reader.GetAttribute("type");
+                    reader.ReadToFollowing("symbol");
+                    d.condition = reader.GetAttribute("number");
+                    d.condtionName = reader.GetAttribute("name");
+                    d.iconID = reader.GetAttribute("var");
 
-                reader.ReadToFollowing("temperature");
-                d.tempLow = reader.GetAttribute("min");
-                d.tempHigh = reader.GetAttribute("max");
+                    reader.ReadToFollowing("precipitation");
+                    d.precipitationChance = reader.GetAttribute("probability");
+                    d.precipitationName = reader.GetAttribute("name");
+                    d.PrecipitationType = reader.GetAttribute("type");
 
-                reader.ReadToFollowing("humidity");
-                d.humidity = reader.GetAttribute("value");
-                d.humidityUnit = reader.GetAttribute("unit");
+                    reader.ReadToFollowing("temperature");
+                    d.tempLow = reader.GetAttribute("min");
+                    d.tempHigh = reader.GetAttribute("max");
 
-                reader.ReadToFollowing("clouds");
-                d.clouds = reader.GetAttribute("value");
+                    reader.ReadToFollowing("humidity");
+                    d.humidity = reader.GetAttribute("value");
+                    d.humidityUnit = reader.GetAttribute("unit");
 
-                //reader.ReadToFollowing("")
+                    reader.ReadToFollowing("clouds");
+                    d.clouds = reader.GetAttribute("value");
 
-                // Prevent adding null days
-                if (d.date != null) { days.Add(d); }
+                    // Prevent adding null days
+                    if (d.date != null) { days.Add(d); }
 
+                }
+                return true;
             }
+            catch
+            {
+                return false;
+            }
+
+            
         }
 
-        private void ExtractCurrent()
+        public static void ExtractCurrent()
         {
+
             // current info is not included in forecast file so we need to use this file to get it
-            XmlReader reader = XmlReader.Create("http://api.openweathermap.org/data/2.5/weather?q=Stratford,CA&mode=xml&units=metric&appid=3f2e224b815c0ed45524322e145149f0");
+            XmlReader reader = XmlReader.Create($"http://api.openweathermap.org/data/2.5/weather?q={location}&mode=xml&units=metric&appid=3f2e224b815c0ed45524322e145149f0");
 
             //find the city and current temperature and add to appropriate item in days list
             reader.ReadToFollowing("city");
@@ -103,8 +117,6 @@ namespace XMLWeather
                     days[0].tempUnit = "F";
                     break;
             }
-
-            // https://learn.microsoft.com/en-us/dotnet/standard/base-types/how-to-extract-the-day-of-the-week-from-a-specific-date
 
         }
     }
