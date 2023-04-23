@@ -39,6 +39,8 @@ namespace XMLWeather
 
             sunLabel.Text = $"Sun Rise: {Form1.days[0].sunRise}\nSun Set: {Form1.days[0].sunSet}";
 
+            windLabel.Text = $"Wind: {Math.Round(Convert.ToDouble(Form1.days[0].windSpeed), 1)} {Form1.days[0].windUnit} going {Form1.days[0].windDirection}";
+
             // Display current weather icon
             string url = $"https://openweathermap.org/img/wn/{Form1.days[0].iconID}@2x.png";
             weatherIcon.LoadAsync(url);

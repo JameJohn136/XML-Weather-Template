@@ -74,6 +74,7 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.windLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.weatherIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -100,7 +101,7 @@
             this.currentMaxLabel.AutoSize = true;
             this.currentMaxLabel.Font = new System.Drawing.Font("Nexa-Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.currentMaxLabel.ForeColor = System.Drawing.Color.White;
-            this.currentMaxLabel.Location = new System.Drawing.Point(21, 180);
+            this.currentMaxLabel.Location = new System.Drawing.Point(23, 190);
             this.currentMaxLabel.Name = "currentMaxLabel";
             this.currentMaxLabel.Size = new System.Drawing.Size(41, 19);
             this.currentMaxLabel.TabIndex = 31;
@@ -111,7 +112,7 @@
             this.currentMinLabel.AutoSize = true;
             this.currentMinLabel.Font = new System.Drawing.Font("Nexa-Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.currentMinLabel.ForeColor = System.Drawing.Color.White;
-            this.currentMinLabel.Location = new System.Drawing.Point(21, 158);
+            this.currentMinLabel.Location = new System.Drawing.Point(21, 164);
             this.currentMinLabel.Name = "currentMinLabel";
             this.currentMinLabel.Size = new System.Drawing.Size(36, 19);
             this.currentMinLabel.TabIndex = 29;
@@ -122,7 +123,7 @@
             this.tempLabel.AutoSize = true;
             this.tempLabel.Font = new System.Drawing.Font("Nexa-Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tempLabel.ForeColor = System.Drawing.Color.White;
-            this.tempLabel.Location = new System.Drawing.Point(21, 136);
+            this.tempLabel.Location = new System.Drawing.Point(21, 127);
             this.tempLabel.Name = "tempLabel";
             this.tempLabel.Size = new System.Drawing.Size(168, 19);
             this.tempLabel.TabIndex = 26;
@@ -144,7 +145,7 @@
             this.currentConditonLabel.AutoSize = true;
             this.currentConditonLabel.Font = new System.Drawing.Font("Nexa-Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.currentConditonLabel.ForeColor = System.Drawing.Color.White;
-            this.currentConditonLabel.Location = new System.Drawing.Point(23, 233);
+            this.currentConditonLabel.Location = new System.Drawing.Point(21, 217);
             this.currentConditonLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.currentConditonLabel.Name = "currentConditonLabel";
             this.currentConditonLabel.Size = new System.Drawing.Size(84, 19);
@@ -169,7 +170,7 @@
             this.humidityText.BackColor = System.Drawing.Color.Transparent;
             this.humidityText.Font = new System.Drawing.Font("Nexa-Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.humidityText.ForeColor = System.Drawing.Color.White;
-            this.humidityText.Location = new System.Drawing.Point(21, 320);
+            this.humidityText.Location = new System.Drawing.Point(23, 348);
             this.humidityText.Name = "humidityText";
             this.humidityText.Size = new System.Drawing.Size(76, 19);
             this.humidityText.TabIndex = 46;
@@ -181,7 +182,7 @@
             this.sunLabel.BackColor = System.Drawing.Color.Transparent;
             this.sunLabel.Font = new System.Drawing.Font("Nexa-Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sunLabel.ForeColor = System.Drawing.Color.White;
-            this.sunLabel.Location = new System.Drawing.Point(21, 280);
+            this.sunLabel.Location = new System.Drawing.Point(21, 305);
             this.sunLabel.Name = "sunLabel";
             this.sunLabel.Size = new System.Drawing.Size(134, 19);
             this.sunLabel.TabIndex = 47;
@@ -594,11 +595,23 @@
             this.pictureBox6.TabIndex = 84;
             this.pictureBox6.TabStop = false;
             // 
+            // windLabel
+            // 
+            this.windLabel.AutoSize = true;
+            this.windLabel.Font = new System.Drawing.Font("Nexa-Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.windLabel.ForeColor = System.Drawing.Color.White;
+            this.windLabel.Location = new System.Drawing.Point(23, 258);
+            this.windLabel.Name = "windLabel";
+            this.windLabel.Size = new System.Drawing.Size(52, 19);
+            this.windLabel.TabIndex = 85;
+            this.windLabel.Text = "Wind:";
+            // 
             // CurrentScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.windLabel);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox4);
@@ -706,5 +719,6 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Label windLabel;
     }
 }

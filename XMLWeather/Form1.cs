@@ -63,6 +63,13 @@ namespace XMLWeather
                     d.precipitationName = reader.GetAttribute("name");
                     d.PrecipitationType = reader.GetAttribute("type");
 
+                    reader.ReadToFollowing("windDirection");
+                    d.windDirection = reader.GetAttribute("name");
+
+                    reader.ReadToFollowing("windSpeed");
+                    d.windSpeed = reader.GetAttribute("mps");
+                    d.windUnit = reader.GetAttribute("unit");
+
                     reader.ReadToFollowing("temperature");
                     d.tempLow = reader.GetAttribute("min");
                     d.tempHigh = reader.GetAttribute("max");
